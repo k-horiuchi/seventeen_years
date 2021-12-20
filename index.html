@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>17歳と何か月？</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css">
+    </head>
+    <body>
+        
+        <h2>生年月を入力してください。<br>あなたが17歳何か月なのか算出します。</h2>
+        <div style="text-align: center">
+            <input type="text" maxlength="4" id="year" value="1996" style="display: inline">年
+            <input type="text" maxlength="2" id="month" value="02" style="display: inline">月
+            <br><button id="button">算出！</button>
+            <div>
+                <p id="result"></p>
+            </div>
+            <img id="img" src="jikan_tobu_man.png" alt="時間が飛ぶ人" style="display:none;">
+        </div>
+
+        <script>
+
+            const buttonClick = () =>
+            {
+                // 生年月を算出する
+                const year = document.getElementById("year").value
+                const month = (0 + document.getElementById("month").value).slice(-2);
+                const birthDate = new Date(`${year}-${month}-01T00:00:00`)
+
+                // 今日の日付から生年月を引いて差分を出す
+                const today = new Date()
+                const diff = today - birthDate
+
+                // ミリ秒を月に変換する
+                const diffMonth = diff / 2592000000
+
+                // 17歳分を引く
+                const ageMonth = diffMonth - (17 * 12)
+
+                // 1年間を360日で扱っていて、6年に1ヶ月ズレるので補正する
+                const result = Math.floor(ageMonth - (diffMonth / (6 * 12)))
+
+                document.getElementById("result").innerText = `あなたは17才と約${result}ヶ月です！`
+                document.getElementById("img").style.display = "block"
+            }
+            document.getElementById("button").addEventListener("click", buttonClick)
+
+        </script>
+    </body>
+</html>
