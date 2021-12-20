@@ -14,8 +14,10 @@
             <br><button id="button">算出！</button>
             <div>
                 <p id="result"></p>
+                <a id="tweet" href="#" target="_blank" style="display:none;">自分の年齢をツイートする</a>
             </div>
             <img id="img" src="jikan_tobu_man.png" alt="時間が飛ぶ人" style="display:none;">
+
         </div>
 
         <script>
@@ -42,6 +44,10 @@
 
                 document.getElementById("result").innerText = `あなたは17才と約${result}ヶ月です！`
                 document.getElementById("img").style.display = "block"
+                document.getElementById("tweet").style.display = "block"
+
+                document.getElementById("tweet").setAttribute('href', 
+                `https://twitter.com/intent/tweet?text=%E7%A7%81%E3%81%AF17%E6%AD%B3%E3%81%A8%E7%B4%84${result}%E3%83%B6%E6%9C%88%E3%81%A7%E3%81%99%E3%80%82%0Ahttps%3A%2F%2Fk-horiuchi.github.io%2Fseventeen_years%2F%0A%0A%23%E3%81%82%E3%81%AA%E3%81%9F%E3%81%AF17%E6%AD%B3%E3%81%A8%E4%BD%95%E3%81%8B%E6%9C%88`)
             }
             document.getElementById("button").addEventListener("click", buttonClick)
 
