@@ -27,11 +27,16 @@
 
         <script>
 
+            const hankaku = (str) => {
+                return str.replace(/[０-９]/g, (s) => {
+                    return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+                });
+            }
             const buttonClick = () =>
             {
                 // 生年月を算出する
-                const year = document.getElementById("year").value
-                const month = (0 + document.getElementById("month").value).slice(-2);
+                const year = hankaku(document.getElementById("year").value)
+                const month = hankaku((0 + document.getElementById("month").value).slice(-2))
                 const birthDate = new Date(`${year}-${month}-01T00:00:00`)
 
                 // 今日の日付から生年月を引いて差分を出す
